@@ -8,3 +8,11 @@ Instead do `python3 -m venv my_virtual_environment`
 ## Don't encourage shadowing built-in names
 [Assignment: Functions Intermediate I](http://learn.village88.com/m/19/178/1931) uses "min" and "max" as parameter 
 names. Shadowing the built in max and min is bad. Instead, used the names "highest" and "lowest'
+
+### Python functions should be snake_case
+Pep8 states "Function names should be lowercase, with words separated by underscores as necessary to improve 
+readability." ([python.org](https://www.python.org/dev/peps/pep-0008/#function-and-variable-names)) 
+
+However, [Assignment: Functions Intermediate II](http://learn.village88.com/m/19/178/1932) and elsewhere have 
+functions using camelCase names.
+
