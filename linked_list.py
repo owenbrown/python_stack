@@ -50,13 +50,18 @@ class SList(object):
             self_runner = self_runner.next
             other_runner = other_runner.next
 
-
-
-
     def __iter__(self):
-        return self.Iterator(self)
+        self.__start_node = self.head
+        self.__next_node = self.head
+        return self
 
+    def __next__(self):
 
+        if self.__next_node is None:
+            raise StopIteration
+        return_node = self.__next_node
+        self.__next_node = self.__next_node.next
+        return return_node
 
     def remove_value(self, value):
 
@@ -70,7 +75,6 @@ class SList(object):
                 return
 
             runner = runner.next
-    def reverse
 
 
 class TestSlist(unittest.TestCase):
