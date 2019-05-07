@@ -1,6 +1,12 @@
-from flask import Flask  # Import Flask to allow us to create our app
+from flask import Flask, render_template  # Import Flask to allow us to create our app
 
-app = Flask(__name__)  # Create a new instance of the Flask class called "app"
+app = Flask(__name__, template_folder=".")  # Create a new instance of the Flask class called "app"
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
 
 @app.route('/')  # The "@" decorator associates this route with the function immediately following
@@ -16,12 +22,18 @@ def dojo():
 
 @app.route('/say/<s>')
 def say(s):
-    return str(s)
+    if not isinstance(s, str):
+        return "not a string"
+    return 'hi' + str(s)
 
 
 @app.route('/repeat/<n>/<s>')
 def repeat(n, s):
-    print(n)
+    if not n.isdigit():
+        return "n wasn't an integer"
+    if not isinstance(s, str):
+        return "s wasn't a string"
+
     print(s)
     print(s * int(n))
     return str((s + ' ') * int(n))
