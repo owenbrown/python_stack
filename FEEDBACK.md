@@ -16,3 +16,5 @@ readability." ([python.org](https://www.python.org/dev/peps/pep-0008/#function-a
 However, [Assignment: Functions Intermediate II](http://learn.village88.com/m/19/178/1932) and elsewhere have 
 functions using camelCase names.
 
+### [Singly linked lists](http://learn.village88.com/m/19/185/1957) should use idiomatic python
+`while (runner != None):` should be replaced with `while runner is not none`
