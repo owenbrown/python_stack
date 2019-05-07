@@ -2,32 +2,33 @@ class User(object):
     def __init__(self, opening_balance):
         self.balance = opening_balance
 
-    def make_deposit(self, amount) -> bool:
+    def make_deposit(self, amount) -> 'User':
         if amount <= 0:
-            return False
-        else:
-            self.balance += amount
-            return True
+            raise ValueError("negative deposit amount")
 
-    def make_withdrawal(self, amount) -> bool:
+        self.balance += amount
+        return self
+
+    def make_withdrawal(self, amount) -> 'User':
         if amount <= 0:
-            return False
+            raise ValueError("non-positive withdrawal amount")
         if amount > self.balance:
-            return False
-        else:
-            self.balance -= amount
-            return True
+            raise ValueError("Tried to remove more than balance")
+        self.balance -= amount
+        return self
 
     def display_user_balance(self):
         print(self.balance)
+        return self
 
     def transfer_money(self, other_user, amount) -> bool:
         if amount < 0:
-            return False
+            raise ValueError("transfers must be positive")
         else:
+            self.make_withdrawal(amount)
             other_user.balance += amount
-            self.balance -= amount
-            return True
+            return self
+
 
 larry = User(10)
 curly = User(5)
@@ -51,3 +52,6 @@ moe.display_user_balance()
 larry.transfer_money(moe, 2)
 larry.display_user_balance()
 moe.display_user_balance()
+
+guido = User(1)
+guido.make_withdrawal(100).make_withdrawal(100).make_deposit(100).make_withdrawal(100).display_user_balance()
