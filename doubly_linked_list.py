@@ -71,23 +71,26 @@ class DoublyLinkedList(object):
                 raise StopIteration
             return return_node
 
-    class ReverseIterator(object):
-        # Note - objects overly could fall into a linked list.
-        def __init__(self, ddl: 'DoublyLinkedList'):
-            self.ddl = ddl
-            self.runner = ddl.tail
-
-        def __next__(self):
-            if self.runner is None:
-                raise StopIteration
-            return_node = self.runner
-            self.runner = self.runner.previous_node
-            if self.runner == self.ddl.tail:
-                raise StopIteration
-            return return_node
+    # class ReverseIterator(Iterable):
+    #     # Note - objects overly could fall into a linked list.
+    #     def __init__(self, ddl: 'DoublyLinkedList'):
+    #         self.ddl = ddl
+    #         self.runner = ddl.tail
+    #
+    #     def __next__(self):
+    #         if self.runner is None:
+    #             raise StopIteration
+    #         return_node = self.runner
+    #         self.runner = self.runner.previous_node
+    #         if self.runner == self.ddl.tail:
+    #             raise StopIteration
+    #         return return_node
 
     def __iter__(self):
         return self.Iterator(self)
+
+    # def __reversed__(self):
+    #     return self.ReverseIterator(self)
 
     def insert_after(self, new_value, find_value):
         """Insert after the first instance of value"""
@@ -149,6 +152,15 @@ class DoublyLinkedList(object):
             self_runner = self_runner.next_node
             other_runner = other_runner.next_node
 
+    def reverse(self):
+        """Reverse the directions of the linked list"""
+        runner = self.head
+        self.head, self.tail = self.tail, self.head
+        while runner is not None:
+            next_runner = runner.next_node
+            runner.next_node, runner.previous_node = runner.previous_node, runner.next_node
+            runner = next_runner
+
 
 class TestDoublyLinked(unittest.TestCase):
     def setUp(self):
@@ -182,7 +194,9 @@ class TestDoublyLinked(unittest.TestCase):
         self.assertEqual(list("The Zquick brown fox jumped"), self.a.values)
 
     def test_reverse(self):
-        self.a.reverse()
-        the_list = list("The quick brown fox jumped")
-        the_list.reverse()
-        self.assertEqual(the_list, self.a.values)
+        ddl = DoublyLinkedList()
+        for c in "abcdef":
+            ddl.add_node(c)
+        ddl.reverse()
+
+        self.assertEqual(list("fedcba"), ddl.values)
