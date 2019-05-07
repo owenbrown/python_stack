@@ -9,3 +9,9 @@ Search for PyPI packages whose name or summary contains <query>.
 ### Data types
 Primitives include booleans, numbers and strings. Each example he gave is immutable.
 Composites include tuples, lists and dicts.
+
+### All
+Override all to restrict what can be imported.
+```python
+__all__ = ['module', 'module2']
+```
