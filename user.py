@@ -21,36 +21,26 @@ class User(object):
         print(self.balance)
         return self
 
-    def transfer_money(self, other_user, amount) -> bool:
+    def transfer_money(self, other_user, amount) -> 'User':
         if amount < 0:
             raise ValueError("transfers must be positive")
-        else:
-            self.make_withdrawal(amount)
-            other_user.balance += amount
-            return self
+
+        self.make_withdrawal(amount)
+        other_user.balance += amount
+        return self
 
 
 larry = User(10)
 curly = User(5)
 moe = User(3)
 
-larry.make_deposit(1)
-larry.make_deposit(1)
-larry.make_deposit(1)
-larry.make_withdrawal(5)
-larry.display_user_balance()
+larry.make_deposit(1).make_deposit(1).make_deposit(1).make_withdrawal(5).display_user_balance()
 
-curly.make_deposit(5)
-curly.make_deposit(5)
-curly.make_withdrawal(3)
-curly.make_withdrawal(3)
-curly.display_user_balance()
+curly.make_deposit(5).make_deposit(5).make_withdrawal(3).make_withdrawal(3).display_user_balance()
 
-moe.make_deposit(34)
-moe.display_user_balance()
+moe.make_deposit(34).display_user_balance()
 
-larry.transfer_money(moe, 2)
-larry.display_user_balance()
+larry.transfer_money(moe, 2).display_user_balance()
 moe.display_user_balance()
 
 guido = User(1)
