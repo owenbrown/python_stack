@@ -15,3 +15,10 @@ Override all to restrict what can be imported.
 ```python
 __all__ = ['module', 'module2']
 ```
+
+[SmallTalk reference on testing](https://web.archive.org/web/20150315073817/http://www.xprogramming.com/testfram.htm)
+**Fixture**: a single configuration whose behavior is predictable.
+
+Assert statements for Pytest should always be in the order "expected", "actual"
+
+
