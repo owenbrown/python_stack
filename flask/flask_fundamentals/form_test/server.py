@@ -6,7 +6,7 @@ app = Flask(__name__, template_folder='static')
 # our index route will handle rendering our form
 @app.route('/')
 def index():
-    return render_template("material.html")
+    return render_template("index.html")
 
 
 @app.route('/users', methods=['POST'])
@@ -15,12 +15,16 @@ def create_user():
     print(request.form)
     name_from_form = request.form['name']
     email_from_form = request.form['email']
-    return render_template("show.html", name_on_template=name_from_form, email_on_template=email_from_form)
+    location = request.form['Location']
+    comment = request.form['comment']
+    # return "success posting"
+    return render_template(
+        "show.html", name=name_from_form, email=email_from_form, location=location, comment=comment )
 
 
 @app.route('/template')
 def template():
-    return render_template("index.html")
+    return render_template("backup_template.html")
 
 
 if __name__ == "__main__":
