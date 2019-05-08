@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request  # added request
 
-app = Flask(__name__, template_folder='.')
+app = Flask(__name__, template_folder='static')
 
 
 # our index route will handle rendering our form
@@ -16,6 +16,11 @@ def create_user():
     name_from_form = request.form['name']
     email_from_form = request.form['email']
     return render_template("show.html", name_on_template=name_from_form, email_on_template=email_from_form)
+
+
+@app.route('/template')
+def template():
+    return render_template("index.html")
 
 
 if __name__ == "__main__":

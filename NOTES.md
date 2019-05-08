@@ -22,3 +22,19 @@ __all__ = ['module', 'module2']
 Assert statements for Pytest should always be in the order "expected", "actual"
 
 
+### Angular Material vs Material Design Lite
+Both are easy enough to use. 
+- [Angular Material QuickStart](https://material.io/develop/web/docs/getting-started/)
+- [Material Design Lite QuickStart](https://getmdl.io/started/)
+
+According to the reasonable simple decision chart on [Jad Joubran's comparison article](
+https://scotch.io/bar-talk/angular-material-vs-material-design-lite), replicated below
+
+| Already |         |                      |
+| using   | Complex | Decision             |
+| angular | UI      |                      | 
+| ------- | ------- | -------------------- |
+| Yes     | Yes     | Material Angular     |
+| Yes     | No      | Depends              |
+| No      | Yes     | Material Design Lite |
+| No      | No      | Material Design Lite |
