@@ -38,3 +38,11 @@ https://scotch.io/bar-talk/angular-material-vs-material-design-lite), replicated
 | Yes     | No      | Depends              |
 | No      | Yes     | Material Design Lite |
 | No      | No      | Material Design Lite |
+
+### Material design lite doesn't have selectors!
+This might be a fluke, but it appears tha MDL has some serious shortcomings. 
+
+
+### Be careful reloading pages when testing flask.
+You may continue to get errors. 
+Try to figure out the conditions unders which Flask reloads the server.
