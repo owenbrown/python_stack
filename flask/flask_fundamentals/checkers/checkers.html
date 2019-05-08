@@ -1,5 +1,8 @@
+
 <!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="checkers.css">
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Play</title>
@@ -7,8 +10,8 @@
 <body>
 {% for row in range(8) %}
     {% for column in range(8) %}
-    <svg width="50" height="50">
-        <rect width="300" height="100" style="fill:{{get_color(row, column)}};stroke-width:0;stroke:rgb(0,0,0)"/>
+    <svg width="50" height="50" >
+        <rect width="50" height="50" style="fill:{{get_color(row, column)}};stroke-width:3;stroke:rgb(0,0,0)" />
     </svg>
 {% endfor %}
 <br>
