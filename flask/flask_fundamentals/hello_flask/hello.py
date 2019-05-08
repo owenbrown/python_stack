@@ -39,5 +39,20 @@ def repeat(n, s):
     return str((s + ' ') * int(n))
 
 
+@app.route("/play")
+def play():
+    return render_template("play.html", n=3, color="blue")
+
+
+@app.route("/play/<n>")
+def play_2(n):
+    return render_template("play.html", n=int(n), color="blue")
+
+
+@app.route("/play/<n>/<color>")
+def play_3(n, color):
+    return render_template("play.html", n=int(n), color=color)
+
+
 if __name__ == "__main__":  # Ensure this file is being run directly and not from a different module
     app.run(debug=True)  # Run the app in debug mode.
