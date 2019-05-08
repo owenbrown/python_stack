@@ -54,5 +54,16 @@ def play_3(n, color):
     return render_template("play.html", n=int(n), color=color)
 
 
+def get_color(row, column):
+    if (row + column) % 2 == 0:
+        return "black"
+    else:
+        return "red"
+
+
+@app.route("/checkers")
+def checkers():
+    return render_template("checkers.html", get_color=get_color)
+
 if __name__ == "__main__":  # Ensure this file is being run directly and not from a different module
     app.run(debug=True)  # Run the app in debug mode.
