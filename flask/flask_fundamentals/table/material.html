@@ -1,0 +1,32 @@
+<html>
+   <head>
+      <script
+         src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js">
+      </script>
+      <link rel = "stylesheet"
+         href = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+      <link rel = "stylesheet"
+         href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+   </head>
+
+   <body>
+      <table class = "mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp">
+         <thead>
+            <tr>
+               <th class = "mdl-data-table__cell--non-numeric">First name</th>
+               <th>Last name</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for user in users %}
+            <tr>
+               <td class = "mdl-data-table__cell--non-numeric">{{user["first_name"]}}</td>
+               <td>{{user["last_name"]}}</td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+
+   </body>
+</html>
