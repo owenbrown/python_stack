@@ -18,3 +18,14 @@ functions using camelCase names.
 
 ### [Singly linked lists](http://learn.village88.com/m/19/185/1957) should use idiomatic python
 `while (runner != None):` should be replaced with `while runner is not none`
+
+### The (copy) butter in the sample code results in bugs
+If a user copy-and-pastes the sample code, sometimes the word "copy" is taken from the copy button, and injected into
+ the copied code, in a random spot. This is annoying. 
+ 
+ I don't use the copy button because one time it copied in characters that through bugs. So, I copy-and-paste.
+ 
+ In addition, the copy button is really small to click, and hidden until hovered over.
+ 
+ An improvement would be to make the copy button larger, always visible, and in-line, right, justified with the file 
+ name. The text "copy" should not be selectable by the user. 
