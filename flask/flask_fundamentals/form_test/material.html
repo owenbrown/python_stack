@@ -1,0 +1,65 @@
+<html>
+<head>
+    <script
+            src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js">
+    </script>
+    <link rel="stylesheet"
+          href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+<form action='/result' method='post'>
+    Name: <input type='text' name='name'>
+    <br>
+
+    <!-- Simple Textfield -->
+    Email:
+    <form action="#">
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="sample1">
+            <label class="mdl-textfield__label" for="sample1">Email...</label>
+        </div>
+    </form>
+    <br>
+    Dojo location:
+    <div class="mdl-textfield mdl-js-textfield getmdl-select">
+        <input type="text" value="" class="mdl-textfield__input" id="sample2" readonly>
+        <input type="hidden" value="" name="sample2">
+        <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+        <label for="sample2" class="mdl-textfield__label">Country</label>
+        <ul for="sample2" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+            <li class="mdl-menu__item" data-val="DEU">Germany</li>
+            <li class="mdl-menu__item" data-val="BLR">Belarus</li>
+            <li class="mdl-menu__item" data-val="RUS">Russia</li>
+        </ul>
+    </div>
+    <br>
+
+    <select name="location">
+        <option value="Los Angeles">Los Angeles</option>
+        <option value="Seatle">Seatle</option>
+        <option value="San Fransisco">San Fransisco</option>
+        <option value="Berkele">Berkeley</option>
+    </select>
+    <br>
+    Languages:
+    <select multiple>
+        <option value="python">Python</option>
+        <option value="go">Go</option>
+        <option value="javascript">Javascript</option>
+        <option value="c++">C++</option>
+    </select>
+    <br>
+    Comment:
+    <div class="mdl-textfield mdl-js-textfield">
+        <textarea class="mdl-textfield__input" type="text" rows="3" id="sample5" name="comment"></textarea>
+        <label class="mdl-textfield__label" for="sample5">Enter comment here...</label>
+    </div>
+    <br>
+
+    <input type='submit' value='poll'>
+</form>
+</body>
+</html>
