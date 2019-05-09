@@ -16,4 +16,5 @@ Caused when the host is incorrect
 ## AttributeError: 'NoneType' object has no attribute 'encoding'
 Caused when charset is incorrect
 
+## pymysql.err.Error: Already closed
 
