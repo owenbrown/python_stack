@@ -1,0 +1,11 @@
+<a href="{{ url_for("view_users") }}">Home</a>
+<h1>View user</h1>
+{{ user["user_id"] }}
+{{ user["first_name"] | e }}
+{{ user["last_name"] | e }}
+{{ user["email"] | e }}
+{{ user["updated_ts"] }}
+<br>
+<a href={{ url_for('view_user', user_id=user['user_id']) }}>View</a>
+<a href={{ url_for('edit_user', user_id=user['user_id']) }}>Edit</a>
+<a href={{ url_for('delete_user_get', user_id=user['user_id']) }}>Delete</a>

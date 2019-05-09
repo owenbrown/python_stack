@@ -1,0 +1,8 @@
+<a href="{{ url_for("view_users") }}">Home</a>
+<h1>Add user</h1>
+<form action={{url_for("new_user_post")}} method="POST">
+    <input name="first_name" type="text" value="first_name">
+    <input name="last_name" type="text" value="last_name">
+    <input name="email" type="text" value="email">
+    <input type="submit">
+</form>

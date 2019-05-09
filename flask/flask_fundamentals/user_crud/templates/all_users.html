@@ -1,0 +1,29 @@
+<h1>All users</h1>
+
+<table style>
+    <tr>
+        <th>User ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Created</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for user in users %}
+        <tr>
+            <td>{{ user["user_id"] | safe }}</td>
+            <td>{{ user["first_name"] | safe }}</td>
+            <td>{{ user["last_name"] | safe }}</td>
+            <td>{{ user["email"] | safe }}</td>
+            <td>{{ user["created_ts"] | safe }}</td>
+            <td>
+                <a href="{{ url_for('view_user', user_id=user['user_id']) }}">View</a>
+                <a href="{{ url_for('edit_user_post', user_id=user['user_id']) }}">Edit</a>
+                <a href="{{ url_for('delete_user_get', user_id=user['user_id']) }}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="{{ url_for("new_user") }}">Add User</a>

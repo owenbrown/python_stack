@@ -1,0 +1,9 @@
+<a href="/">Home</a>
+<h1>Edit user user</h1>
+<form action="{{ url_for('edit_user_post', user_id=user['user_id']) }}" method="POST">
+
+    <input name="first_name" type="text" value="{{ user['first_name'] }}">
+    <input name="last_name" type="text" value="{{ user['last_name'] }}">
+    <input name="email" type="text" value="{{ user['email'] }}">
+    <input type="submit">
+</form>

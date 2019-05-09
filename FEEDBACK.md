@@ -29,3 +29,10 @@ If a user copy-and-pastes the sample code, sometimes the word "copy" is taken fr
  
  An improvement would be to make the copy button larger, always visible, and in-line, right, justified with the file 
  name. The text "copy" should not be selectable by the user. 
+ 
+ 
+ ### [GET requests should not be used to delete resources](http://learn.village88.com/m/19/183/2042)
+ I could be mistaken but I think sending a GET request to user/<id>/delete makes the API non-restful.
+ 
+ Instead the user should be sending a DELETE request to user/<id>
+ https://restfulapi.net/http-methods/#delete
