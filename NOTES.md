@@ -58,3 +58,9 @@ how flask and the web work.
 
 ### Forms 
 Methods must be specified 
+
+## Deferred Learnings / Learning Debt
+I'm going to come back and learn these skills later
+1. PyCharm shortcuts around committing and pushing to Git
+2. Material Design Lite grid layout
+3. Facial Recognition assignmentd

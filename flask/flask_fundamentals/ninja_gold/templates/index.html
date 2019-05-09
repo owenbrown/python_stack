@@ -68,9 +68,16 @@
             </div>
             {% endfor %}
 
+
+            <ul class="mdl-list">
+                {% for message in messages %}
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">{{message}}</span>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </main>
 </div>
-
 </body>
 </html>

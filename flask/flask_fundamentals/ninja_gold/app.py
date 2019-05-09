@@ -12,7 +12,8 @@ app.secret_key = os.environ.get("FLASK_SECRET") or "8FSBV4T580VW81U0C2S6EFFVMU8Q
 def index():
     print("received get")
     gold = session['gold'] or 0
-    return render_template("index.html", gold=gold, places=places)
+    messages = session['messages'] or []
+    return render_template("index.html", gold=gold, places=places, messages=messages)
 
 
 @app.route('/process_money', methods=["POST"])
@@ -23,7 +24,12 @@ def process_money():
     delta = places[place_name].find_gold()
     session['gold'] = session.get('gold', 0) + delta
 
-    print(f"Earned {delta} gold at the {place_name}. Total gold is {session['gold']}")
+    msg = f"Your earned {delta} gold at the {place_name}. Total gold is {session['gold']}"
+    if 'messages' in session:
+        session['messages'].append(msg)
+    else:
+        session['messages'] = [msg]
+
     return redirect("/")
 
 
