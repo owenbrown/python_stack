@@ -20,9 +20,10 @@ places = {
     "house": Place("house", "Ninjas can knit. They are always knit the same thing!",
                    "Knit at home",
                    lambda: 1,),
-    "Casino": Place("casino", "You can win big or lose it all.",
+    "casino": Place("casino", "You can win big or lose it all.",
                     "Gamble",
-                    lambda: random.choice([-1, -3, -4, 5, 8, 3, 22, -1, -3, -5, -2, -10, 1, 1]))
+                    lambda: random.choice([-50, -20, -6, -1, -1, -3, -1, -3, -4, 5, 8, 3, 22, -1, -3, -5, -2, -10, 1,
+                                           1, 50]))
 }
 
 

@@ -53,9 +53,16 @@
                     <div class="mdl-card__supporting-text mdl-color-text--grey-600">
                         {{place.caption}}
                     </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">{{place.action}}</a>
-                    </div>
+                    <form action="{{url_for('process_money')}}" method="post">
+                        <input type="hidden" name="building" value="farm"/>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <button
+                                    type="submit"
+                                    class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                                {{place.action}}
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <div class="demo-separator mdl-cell--1-col"></div>
             </div>

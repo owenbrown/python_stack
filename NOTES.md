@@ -46,3 +46,15 @@ This might be a fluke, but it appears tha MDL has some serious shortcomings.
 ### Be careful reloading pages when testing flask.
 You may continue to get errors. 
 Try to figure out the conditions unders which Flask reloads the server.
+
+
+### Flask - record details that burn up time
+Lot's information about how Flask, and the web generally, work feels arbitrary.
+
+For this reason, it's difficult to remember. Why remember something arbitrary and path dependent?
+
+And yet, the web is what is is. So, rather than burn time guessing and checking, write down the arbitrary details of 
+how flask and the web work.
+
+### Forms 
+Methods must be specified 
