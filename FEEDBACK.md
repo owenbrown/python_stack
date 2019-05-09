@@ -19,7 +19,7 @@ functions using camelCase names.
 ### [Singly linked lists](http://learn.village88.com/m/19/185/1957) should use idiomatic python
 `while (runner != None):` should be replaced with `while runner is not none`
 
-### The (copy) butter in the sample code results in bugs
+### The (copy) button in the sample code results in bugs
 If a user copy-and-pastes the sample code, sometimes the word "copy" is taken from the copy button, and injected into
  the copied code, in a random spot. This is annoying. 
  

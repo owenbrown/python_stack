@@ -64,3 +64,19 @@ I'm going to come back and learn these skills later
 1. PyCharm shortcuts around committing and pushing to Git
 2. Material Design Lite grid layout
 3. Facial Recognition assignmentd
+
+## PostGreSQL is sot strictly better than MySQL
+[According to Digital Ocean](
+https://www.digitalocean
+.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems), 
+there are times when MySQL is a better option than PostGqeSQL
+
+[This guys comparision is decent](https://hackr.io/blog/postgresql-vs-mysql).
+
+My overall feeling is to use PostGreSQL because, initially, when your project has little data, performance doesn't 
+matter much. Later, you may have a more complex system, and then you'll be glad you have PostGreSQL. Finally, in 
+terms of "ease of use", AWS takes care of administration, and I've found PostGreSQL to be very easy to use.
+
+### MySQL
+Table 2.1 on the [MySQL installation page](https://dev.mysql.com/doc/mysql-osx-excerpt/5.7/en/osx-installation-pkg.html)
+describes where MySql Server was installed.
