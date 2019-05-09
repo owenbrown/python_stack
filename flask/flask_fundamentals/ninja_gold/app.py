@@ -1,18 +1,18 @@
 import os
 
-from flask import Flask, render_template, redirect, session
+from flask import Flask, render_template, redirect, request, session
 
 from places import places
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("FLASK_SECRET") or "8FSBV4T580VW81U0C2S6EFFVMU8QK8T730517UR07QW15X869BHI43A267J"
+app.secret_key = os.environ.get("FLASK_SECRET") or "SBV4T580VW81U0C2S6EFFVMU8QK8T730517UR07QW15X869BHI43A267J"
 
 
 @app.route('/', methods=["GET"])
 def index():
     print("received get")
-    gold = session['gold'] or 0
-    messages = session['messages'] or []
+    gold = session.get('gold', 0)
+    messages = session.get('messages', list())
     return render_template("index.html", gold=gold, places=places, messages=messages)
 
 
@@ -20,7 +20,7 @@ def index():
 def process_money():
     print("received post")
 
-    place_name = "casino"
+    place_name = request.form['building']
     delta = places[place_name].find_gold()
     session['gold'] = session.get('gold', 0) + delta
 

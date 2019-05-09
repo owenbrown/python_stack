@@ -54,7 +54,7 @@
                         {{place.caption}}
                     </div>
                     <form action="{{url_for('process_money')}}" method="post">
-                        <input type="hidden" name="building" value="farm"/>
+                        <input type="hidden" name="building" value="{{place.name}}">
                         <div class="mdl-card__actions mdl-card--border">
                             <button
                                     type="submit"
@@ -72,7 +72,7 @@
             <ul class="mdl-list">
                 {% for message in messages %}
                 <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">{{message}}</span>
+                    <span class="mdl-list__item-primary-content">{{message | safe}}</span>
                 </li>
                 {% endfor %}
             </ul>
