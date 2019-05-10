@@ -80,3 +80,37 @@ terms of "ease of use", AWS takes care of administration, and I've found PostGre
 ### MySQL
 Table 2.1 on the [MySQL installation page](https://dev.mysql.com/doc/mysql-osx-excerpt/5.7/en/osx-installation-pkg.html)
 describes where MySql Server was installed.
+
+### HTML to remember
+Remember that Forms specify and action, which is a URL endpoint, and a method, and that type "submit" creates a 
+button that will post all <input> fields to the html endpoint.
+
+"value=" is used to pre-populate inputs in forms.
+
+Use form label markup for accessibility.
+
+## Speed tips
+"def" before decorators slowed me down several times.
+
+It might have made sense to write out all of my routes first.
+
+I should have always used url_for.
+
+I should have enabled Jinja support at the outset.
+When I get to Django, take advantage of PyCharm's Django integration.
+
+I jumped into coding too quickly. I should have really looked at the details of what was being assigned - it would 
+have saved me time later. Specifically, 
+- which URL endpoints to use
+- the endpoint / method combinations
+
+Switching names of routes and functions slowed me down, considerably.
+
+Alarm fatigue in PyCharm slows me down. Disable warnings I won't respond to.
+
+When writing code, close the run-code window. 
+
+Mixing up plural and singular is costly.
+
+
+### To change table in MySQL workbench, start with Menu->Database->Connect to database
