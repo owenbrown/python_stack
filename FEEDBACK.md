@@ -36,3 +36,13 @@ If a user copy-and-pastes the sample code, sometimes the word "copy" is taken fr
  
  Instead the user should be sending a DELETE request to user/<id>
  https://restfulapi.net/http-methods/#delete
+ 
+ 
+ ### debugHelp not imported in [Conference Registration Demo](http://learn.village88.com/m/19/183/2038)
+This method, `debugHelp("INDEX METHOD")`, would err out.
+
+
+### Quiz wouldn't let me re-take
+I try to "retake quiz" on the [quiz results page](http://learn.village88.com/m/19/183/2036),
+it always grades me using whatever I entered the very first time I took the quiz. 
+
