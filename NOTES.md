@@ -114,3 +114,8 @@ Mixing up plural and singular is costly.
 
 
 ### To change table in MySQL workbench, start with Menu->Database->Connect to database
+
+When a bit of logic is intricate, make sure to slow down and also check for error surrounding that logic.
+These errors are common because the intricate logic has distracted me.
+
+Paying closer attention to the warning that PyCharm gives me is definitely paying off. It's saving me time. 

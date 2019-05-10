@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block body %}
+    <u>Email Addresses Entered</u><br>
+    {% for email in emails %}
+        {{ email }} <br>
+    {% endfor %}
+{% endblock %}
