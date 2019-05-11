@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block body %}
+    You are logged in as {{ email }}.
+
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Admin level</th>
+            <th>Suspend</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <th>{{ user["email"] }}</th>
+                <th>{{ user["first_name"] }}</th>
+                <th>{{ user["last_name"] }}</th>
+                <th>{{ user["admin_level"] }}</th>
+                <th><a href="{{ url_for("suspend", target_email=user["email"]) }}">Suspend</a></th>
+                <th>{{ user["admin_level"] }}</th>
+                <th>
+                    {% if user['admin_level'] == 9 %}
+                        <th><a href="{{ url_for("remove_admin", target_email=user["email"]) }}">Remove admin</a></th>
+                    {% else %}
+                        <th><a href="{{ url_for("make_admin", target_email=user["email"]) }}">Make admin</a></th>
+                    {% endif %}
+                </th>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ url_for('logout') }}">Log Out </a>
+
+{% endblock %}

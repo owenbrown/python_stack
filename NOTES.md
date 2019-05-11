@@ -128,3 +128,9 @@ I don't know why, but I followed instructions [here](https://stackoverflow.com/q
 51188806/pycharm-error-runtimeerror-click-will-abort-further-execution-because-python-3)
 and specified that I wanted to use 
 `LC_ALL=en_US.utf-8;LANG=en_US.utf-8`
+
+
+### Use your IDE - but be wary!
+Each time I use a new feature of the IDE, be aware that it could change how I develop in unexpected ways.
+
+Talk out loud, or write out your thoughts, as soon as you experience issues. 
