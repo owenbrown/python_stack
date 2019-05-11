@@ -119,3 +119,12 @@ When a bit of logic is intricate, make sure to slow down and also check for erro
 These errors are common because the intricate logic has distracted me.
 
 Paying closer attention to the warning that PyCharm gives me is definitely paying off. It's saving me time. 
+
+### Don't do unimportant work
+Focus on doing the minimum amount necessary to complete each task.
+
+### Switching to Flask as the run time required adding environment variables
+I don't know why, but I followed instructions [here](https://stackoverflow.com/questions/
+51188806/pycharm-error-runtimeerror-click-will-abort-further-execution-because-python-3)
+and specified that I wanted to use 
+`LC_ALL=en_US.utf-8;LANG=en_US.utf-8`

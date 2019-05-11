@@ -44,9 +44,10 @@ def register():
     if r is False:
         flash("Sadly, something is broken with our database. Whoops!")
         return redirect(url_for("index"))
-    flash("Success registering!")
     session["token"] = "valid"
-    return redirect(url_for("success"))
+    session["email"] = email
+    flash("Success registering!")
+    return redirect(url_for("wall"))
 
 
 def __get_password_hash(email: str) -> str:
@@ -76,8 +77,9 @@ def login():
 
     if b_crypt.check_password_hash(__get_password_hash(email), password):
         session["token"] = "valid"
+        session["email"] = email
         flash("Welcome back")
-        return redirect(url_for("success"))
+        return redirect(url_for("wall"))
     else:
         flash("That password is incorrect")
         return redirect(url_for("index"))
@@ -101,6 +103,61 @@ def logout():
         flash("You weren't logged in.")
 
     return redirect(url_for("index"))
+
+
+@app.route("/wall")
+def wall():
+    print("get /wall")
+    print(session.get("token"))
+    if session.get("token") != "valid":
+        flash("You must be logged in to view this page")
+        return redirect(url_for("index"))
+
+    print("alpha")
+    # Get other messages
+    mysql = MySQLConnection("mydb")
+    query = "SELECT sender, content, ts " \
+            "FROM board_message " \
+            "WHERE recipient = %(email)s" \
+            "ORDER BY ts desc " \
+            "LIMIT 20;"
+    print(query)
+    data = dict(email=session['email'])
+    messages = mysql.query_db(query, data)
+    if messages is False:
+        flash("Sadly, there was an error with query 1")
+        return redirect(url_for("index"))
+    print("beta")
+
+    # Get other users
+    mysql = MySQLConnection("mydb")
+    query = "SELECT first_name, email " \
+            "FROM peak_user " \
+            "ORDER BY first_name;"
+    users = mysql.query_db(query)
+    if users is False:
+        flash("Sadly, there was an error with query 2")
+        return redirect(url_for("index"))
+    # for message in messages:
+    #     message["ts"] = str(message["ts"])
+
+    return render_template("wall.html", email=session["email"], messages=messages, users=users)
+
+
+@app.route("/wall", methods=["POST"])
+def send_message():
+    mysql = MySQLConnection("mydb")
+    query = "INSERT INTO board_message(sender, recipient, content) " \
+            "VALUE (%(sender)s, %(recipient)s, %(content)s);"
+    data = dict(
+        sender=session["email"],
+        recipient=request.form["recipient"],
+        content=request.form["content"])
+    mysql.query_db(query, data)
+
+    flash(f"You sent a message to {request.form['recipient']}")
+
+    return redirect(url_for("wall"))
 
 
 if __name__ == '__main__':

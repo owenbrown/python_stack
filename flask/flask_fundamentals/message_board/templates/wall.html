@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+    You are logged in as {{ email }}.
+    <a href="{{ url_for('logout') }}">Log Out </a>
+
+    <h2>Messages</h2>
+
+    {% for message in messages %}
+        From: {{ message["sender"] }} <br>
+        Content: {{ message["content"] }} <br>
+        Sent at: {{ message["ts"] }}<br>
+        <br>
+        <br>
+    {% endfor %}
+
+    <h2>Send Message</h2>
+
+    <form action="{{ url_for('send_message') }}" method="post">
+        <label for="recipient">To: </label>
+        <select id="recipient" name="recipient">
+            {% for user in users %}
+                <option value="{{ user["email"] }}">{{ user["first_name"] }}</option>
+            {% endfor %}
+        </select>
+        <label for="content">Content - be concise!</label>
+        <input type="text" id="content" name="content">
+        <input type="submit">
+    </form>
+
+{% endblock %}
