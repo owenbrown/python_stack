@@ -113,7 +113,6 @@ def wall():
         flash("You must be logged in to view this page")
         return redirect(url_for("index"))
 
-    print("alpha")
     # Get other messages
     mysql = MySQLConnection("mydb")
     query = "SELECT sender, content, ts " \
@@ -121,13 +120,11 @@ def wall():
             "WHERE recipient = %(email)s" \
             "ORDER BY ts desc " \
             "LIMIT 20;"
-    print(query)
     data = dict(email=session['email'])
     messages = mysql.query_db(query, data)
     if messages is False:
         flash("Sadly, there was an error with query 1")
         return redirect(url_for("index"))
-    print("beta")
 
     # Get other users
     mysql = MySQLConnection("mydb")
@@ -146,6 +143,7 @@ def wall():
 
 @app.route("/wall", methods=["POST"])
 def send_message():
+    print("post /wall")
     mysql = MySQLConnection("mydb")
     query = "INSERT INTO board_message(sender, recipient, content) " \
             "VALUE (%(sender)s, %(recipient)s, %(content)s);"
@@ -156,6 +154,20 @@ def send_message():
     mysql.query_db(query, data)
 
     flash(f"You sent a message to {request.form['recipient']}")
+
+    return redirect(url_for("wall"))
+
+
+@app.route("/wall/ts/<ts>", methods=["GET"])
+def delete_message(ts):
+    print("get /wall")
+    mysql = MySQLConnection("mydb")
+    query = "DELETE FROM board_message " \
+            "WHERE ts = %(ts)s;"
+    data = dict(ts=ts)
+    mysql.query_db(query, data)
+
+    flash(f"You deleted a message")
 
     return redirect(url_for("wall"))
 
