@@ -134,3 +134,6 @@ and specified that I wanted to use
 Each time I use a new feature of the IDE, be aware that it could change how I develop in unexpected ways.
 
 Talk out loud, or write out your thoughts, as soon as you experience issues. 
+
+### If something is happening very unexpected in javascript
+In addition to using console.log(), also inspect the page elements to see how they are changing.

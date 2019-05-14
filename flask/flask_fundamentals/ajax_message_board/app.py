@@ -328,7 +328,7 @@ def username():
     res = mysql.query_db(query, data)
     print(res)
     if len(res) > 0:
-        return "You already have an account"
+        return 'You already have an account'
     else:
         return "Email is free"
 
