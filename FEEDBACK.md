@@ -46,3 +46,9 @@ This method, `debugHelp("INDEX METHOD")`, would err out.
 I try to "retake quiz" on the [quiz results page](http://learn.village88.com/m/19/183/2036),
 it always grades me using whatever I entered the very first time I took the quiz. 
 
+### Always have written text in addition to the video
+For some people (me) have a strong preference for written text rather than video.
+Almost all of the material is written, which I really appreciate.
+
+However, [Session Security with Login](http://learn.village88.com/m/19/183/2043) is only in video form.
+ 

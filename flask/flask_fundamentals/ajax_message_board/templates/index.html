@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <script src="{{ url_for('static', filename='wall.js') }}"></script>
+    <script>console.log("{{ url_for('static', filename='wall.js') }}")</script>
+
+    <h2>Register</h2>
+    <br>
+    <form action="{{ url_for('register') }}" method="post">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name"
+               pattern="[A-Za-z]{2,}"
+               title="Two or more characters, latin letters only"
+               required>
+
+        <br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name"
+               pattern="[A-Za-z]{2,}"
+               title="Two or more characters, latin letters only"
+               required>
+        <br>
+        <div id="emailMsg"></div>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email"
+               pattern="^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$"
+               title="A valid email address"
+               required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password"
+               pattern="([0-9A-Za-z!@#$%^]){8,255}"
+               title="Eight or more characters."
+               required>
+        <input type="submit" value="submit">
+    </form>
+    <br>
+
+    <h2>Returning users</h2>
+    <form action="{{ url_for('login') }}" method="post">
+        <label for="login_email">Email:</label>
+        <input type="text" id="login_email" name="email" required>
+        <br>
+        <label for="login_password">Password:</label>
+        <input type="submit" value="submit">
+        <input type="text" id="login_password" name="password" required>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,4 @@
+1. Done - import jquery
+2. Create on-listen event that writes to the javascript console on each key stroke
+3. create onlisten even that writes to the javascript console, stating whether the username is available
+4. create onlisten event that adds or removes "This username is available" on each key keystroke
