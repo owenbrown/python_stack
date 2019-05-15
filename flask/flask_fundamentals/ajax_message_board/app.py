@@ -29,6 +29,9 @@ def register():
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     email = request.form['email']
+    username = request.form['username']
+    print("we got username")
+    print(username)
 
     if not (first_name and last_name and email):
         flash("Our form validation failed!", "error")
@@ -38,9 +41,9 @@ def register():
     password_hash = b_crypt.generate_password_hash(password)
 
     mysql = MySQLConnection("mydb")
-    query = "INSERT into peak_user(first_name, last_name, email, password_hash) " \
-            "VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password_hash)s)"
-    data = dict(first_name=first_name, last_name=last_name, email=email, password_hash=password_hash)
+    query = "INSERT into peak_user(first_name, last_name, email, password_hash, username) " \
+            "VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password_hash)s, %(username)s)"
+    data = dict(first_name=first_name, last_name=last_name, email=email, password_hash=password_hash, username=username)
     r = mysql.query_db(query, data)
     if r is False:
         flash("Sadly, something is broken with our database. Whoops!")
@@ -328,6 +331,29 @@ def username():
         return 'Username taken'
     else:
         return "Username available"
+
+
+@app.route("/username_search", methods=["POST"])
+def username_search():
+    print(request.form)
+    print(request.form['username_search'])
+    if request.form['username_search'] == str():
+        return str()
+
+    mysql = MySQLConnection("mydb")
+    query = "SELECT username " \
+            "FROM peak_user " \
+            "WHERE username like %(query)s " \
+            "ORDER BY username;"
+
+    data = dict(query=request.form['username_search'] + '%%')
+    res = mysql.query_db(query, data)
+    html = str()
+    for r in res:
+        html += f'<li>{r["username"]}</li>'
+    print(html)
+
+    return html
 
 
 if __name__ == '__main__':
