@@ -20,7 +20,15 @@
                title="Two or more characters, latin letters only"
                required>
         <br>
-        <div id="emailMsg"></div>
+        <br>
+        <div id="usernameMsg"></div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"
+               pattern="[A-Za-z]{2,}"
+               title="Two or more characters, latin letters only"
+               required>
+        <br>
+
         <label for="email">Email:</label>
         <input type="text" id="email" name="email"
                pattern="^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$"

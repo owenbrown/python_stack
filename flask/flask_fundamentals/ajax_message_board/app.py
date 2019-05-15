@@ -317,20 +317,17 @@ def remove_admin(target_email):
 
 @app.route("/username", methods=['POST'])
 def username():
-    print("data:")
-    print(request.data)
-    print(request.form)
     mysql = MySQLConnection("mydb")
-    query = "SELECT email " \
+    query = "SELECT username " \
             "FROM peak_user " \
-            "WHERE email = %(email)s;"
-    data = dict(email=request.form["email"])
+            "WHERE username = %(username)s;"
+    data = dict(username=request.form["username"])
     res = mysql.query_db(query, data)
     print(res)
     if len(res) > 0:
-        return 'You already have an account'
+        return 'Username taken'
     else:
-        return "Email is free"
+        return "Username available"
 
 
 if __name__ == '__main__':
