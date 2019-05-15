@@ -179,7 +179,7 @@ def send_message():
 
 @app.route("/wall/ts/<ts>", methods=["GET"])
 def delete_message(ts):
-    print("get /wall")
+    print("get /wall/ts/<ts>")
     mysql = MySQLConnection("mydb")
     query = "DELETE FROM board_message " \
             "WHERE ts = %(ts)s;"
@@ -191,9 +191,20 @@ def delete_message(ts):
     return redirect(url_for("wall"))
 
 
-@app.route("/bone")
-def bone():
-    return "bone"
+@app.route("/wall/ajax_delete", methods=["POST"])
+def delete_message_ajax_post():
+    print("post /wall/ajax_delete")
+    print(request.form)
+    # ts = request.form.keys()[0].replace('#delete_ajax', "")
+    mysql = MySQLConnection("mydb")
+    query = "DELETE FROM board_message " \
+            "WHERE ts = %(ts)s;"
+    data = dict(ts=request.form['ts'])
+    mysql.query_db(query, data)
+
+    flash(f"You deleted a message")
+
+    return "success deleting"
 
 
 @app.route("/user2")

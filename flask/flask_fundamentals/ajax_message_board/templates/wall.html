@@ -10,10 +10,48 @@
     <h2>Messages</h2>
 
     {% for message in messages %}
-        From: {{ message["sender"] }} <br>
-        Content: {{ message["content"] }} <br>
-        Sent at: {{ message["ts"] }}<br>
-        <a href="{{ url_for("delete_message", ts=message["ts"]) }}">Delete message</a>
+        <div id="message{{ message["ts"] }}">
+            From: {{ message["sender"] }} <br>
+            Content: {{ message["content"] }} <br>
+            Sent at: {{ message["ts"] }}<br>
+            <a href="{{ url_for("delete_message", ts=message["ts"]) }}">Delete message</a>
+            <form id="delete_message_form{{ message[ts] }}" hidden="{{ message['ts'] }}">
+                <input type="hidden" name="ts" value="{{ message['ts'] }}">
+            </form>
+            <button id="delete_ajax{{ message["ts"] }}">Delete Ajax</button>
+
+            <script>
+                $(document).ready(function () {
+                        {#$('#delete_ajax{{ message["ts"] }}').click(function () {#}
+                        $("[id='delete_ajax{{ message["ts"] }}']").click(function () {
+                            console.log("click detected")
+                            {#var data = '#delete_ajax{{ message["ts"] }}'#}
+                            {#console.log("data is ")#}
+                            {#console.log(data)#}
+
+                            $.ajax({
+                                {#Remove message from database#}
+                                method: "POST",
+                                url: '/wall/ajax_delete',
+                                data: $('#delete_message_form{{ message[ts] }}').serialize()
+                            })
+                                .done(function (res) {
+                                    console.log("Removing the elements")
+                                    console.log($('#message{{ message["ts"] }}'))
+                                    console.log($('#nothing'))
+                                    console.log("Did you find the element you were looking for?")
+                                    $("[id='message{{ message['ts'] }}']").remove();
+                                    $("#biggles").remove();
+                                    console.log("done")
+                                })
+                        })
+                        {#return false is neccassary so that ajax doesn't redirect #}
+                        return false;
+                    }
+                )
+            </script>
+        </div>
+
         <br>
         <br>
     {% endfor %}

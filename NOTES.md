@@ -137,3 +137,26 @@ Talk out loud, or write out your thoughts, as soon as you experience issues.
 
 ### If something is happening very unexpected in javascript
 In addition to using console.log(), also inspect the page elements to see how they are changing.
+
+### DOM
+The DOM is a standard object model and programming interface for HTML.
+- All html elements are defined as objects.
+- Each object has methods and properties.
+- A method as an action you can do. 
+- A property is a value you can get or set.
+
+"document" is a reserved word. It's always the document.
+
+document.getElementById is a useful
+<element>.innerHtml is a useful property to change.
+
+Document has three primary methods for finding HTML elements
+- getElementById(id)
+- getElementsByTagName(name)
+- getElementsByClassName(name)
+
+Style isn't set directly. Instead it's set with element.style.property
+
+### Jquery selector is quirky
+The JQuery selector is quirky. In particular, it appears able to select elements who a space in the name, if the 
+element is simply being printed. But, if the element is being edited, you have to use the $(['id'="some thing"]) syntax.

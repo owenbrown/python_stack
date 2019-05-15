@@ -10,12 +10,15 @@ $(document).ready(function () {
             .done(function (res) {
                 $('#usernameMsg').html(res);
                 if (res == "Username available") {
+                    // this line changes all elements with name usernameMsg
                     $('#usernameMsg').css('color', 'green');
                 } else {
                     $('#usernameMsg').css('color', 'red');
+                    console.log($('#usernameMsg'))
+                    console.log($('#usernameMsg')[0].style)
+                    // this line changes the style of the first element with id '#usernameMsg'
+                    $('#usernameMsg')[0].style.color = 'red';
                 }
-
-
             })
     })
 })
@@ -35,5 +38,7 @@ $(document).ready(function () {
             })
     })
 })
+
+$("")
 
 
