@@ -147,6 +147,14 @@ The DOM is a standard object model and programming interface for HTML.
 
 "document" is a reserved word. It's always the document.
 
+# Big Idea
+The big idea is, I'd learn faster and get through these modules more quickly if I didn't get hung up on details. 
+There is a constant balance between learning deeply instead of guess-and-check, and spending too time on a blocker. 
+The rule of thumb might be "guess if there is a high certainty that the first guess will work", and "70% of blocks 
+occur because of typos and errors. So avoid these if possible."
+
+
+
 document.getElementById is a useful
 <element>.innerHtml is a useful property to change.
 
@@ -160,3 +168,16 @@ Style isn't set directly. Instead it's set with element.style.property
 ### Jquery selector is quirky
 The JQuery selector is quirky. In particular, it appears able to select elements who a space in the name, if the 
 element is simply being printed. But, if the element is being edited, you have to use the $(['id'="some thing"]) syntax.
+
+### MVC vs MTV
+(Model, View, Controller) translates to (Model, Template, View) in Django.
+
+One project per application.
+Many apps per project.
+
+### Beware - regex keywords in paths are positional
+The ordering matters, not the name in the regex
+
+
+Don't get hung up on Django having a funny regex. 
+Keep moving.
