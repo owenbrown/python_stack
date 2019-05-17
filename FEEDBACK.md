@@ -52,3 +52,5 @@ Almost all of the material is written, which I really appreciate.
 
 However, [Session Security with Login](http://learn.village88.com/m/19/183/2043) is only in video form.
  
+## On the [Django Ninja Gold assignment](http://learn.village88.com/m/19/180/1974), tell wear to put logic files.
+Where is the idiomatic place to put logic related to an app? At the route of the app folder?
