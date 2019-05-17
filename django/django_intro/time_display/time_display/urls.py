@@ -20,5 +20,7 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^', include('apps.first_app.urls')),
+    url(r'^random_word', include('apps.random_word.urls')),
+    url(r'^', include('apps.first_app.urls'))
 ]
+

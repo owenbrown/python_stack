@@ -181,3 +181,5 @@ The ordering matters, not the name in the regex
 
 Don't get hung up on Django having a funny regex. 
 Keep moving.
+
+### When using regex, for example, in Django's URLs, remember to escape the slashes.
