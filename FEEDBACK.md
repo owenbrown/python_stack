@@ -54,3 +54,17 @@ However, [Session Security with Login](http://learn.village88.com/m/19/183/2043)
  
 ## On the [Django Ninja Gold assignment](http://learn.village88.com/m/19/180/1974), tell wear to put logic files.
 Where is the idiomatic place to put logic related to an app? At the route of the app folder?
+
+## On the [Django Ninja Gold assignment](http://learn.village88.com/m/19/180/1974), tell person how {% url name %} works
+I burned a lot of time reading the documentation, not knowing that you have to use names in order be reverse look up 
+domains. 
+
+The very simple fix is, *in the previous modules*, when the user creates a urlpattern, instruct them to give it a 
+name, and tell them, "The name is important because it allows you to generate URLS that will map to this route."
+
+
+### [The Django tutorial](https://docs.djangoproject.com/en/2.2/intro/tutorial01/) is really well written
+The tutorial includes details that are essential and omitted in the CoderDojo tutorial. For example, mentioning that 
+whenever Django encounters an include() it chops off whatever part of the URL matched up to that point, is useful. 
+
+So maybe it makes sense to have users complete the official Django tutorial. I did.

@@ -183,3 +183,123 @@ Don't get hung up on Django having a funny regex.
 Keep moving.
 
 ### When using regex, for example, in Django's URLs, remember to escape the slashes.
+
+### It's necessary to run `python manage.py migrate` prior to using session.
+
+### Django template notes
+Jinja2 is included but not recommended. 
+The system for selecting which template backend (DTL or Jinja2) is complex.
+The template engine is referred to as a *backend*.
+
+The exists a *urlpatterns* list. It's necessary to understand how this list is generated in order to put urls in your
+ code. 
+
+Django's documentation talks a lot about why it offers the features that it offers. It explains the reasoning of the 
+authors of the software. If I read the documentation with the attitude that I simply want to finish the Django 
+tutorial as soon as possible, then I will be frustrated with what I will view as unnecessary text.
+
+However, if I embrace learning Django as an opportunity to learn a bit about how to write a web server, then I will 
+find the documentation interesting. So, I will do that. 
+
+#### Url resolution works in two directions
+It's necessary both to map a request from the user / browser to a view, and it is necessary to map a view plus a list
+ of arguments to an associated URL. 
+ 
+ I'm struggling to understand how to use the *url template tag*.
+ 
+ The article makes a reference to URLConf. 
+ I'm going to return here - https://docs.djangoproject.com/en/2.2/topics/http/urls/#examples - after I finish reading
+  about URLConf. 
+  
+ #### URLConf
+ The URL Configuration, maps URL Path expressions to python functions (views). Written in pure python.
+ 
+ This document is 10 pages. I'm going to read the whole document, slowly, because I think doing so will really help 
+ me understand Django. When I read long documents, I tend to check out. So, to get around that I'll take good notes.
+ 
+ There are multiple URL confs.  
+ We can trace the resolution
+ - settings.py specifies the URLConf file, urls.py
+ - urls.py `include`s other URLConf files. For example, apps/only_app/urls.py
+ 
+ Middleware can overload this. I don't know what "middleware" refers to, so I'll assume that my current apps aren't 
+ using any middleware. But, if it did have middleware, the middle ware could permute the HttpRequest object with its 
+ own urlconf.
+ 
+ The URLConf generates a sequence of django.urls.path() or django.urls.re_path().
+ 
+ Django supports custom pather converters. 
+ 
+ I don't understand what this FourDigitYearConverter does.
+ 
+ The docs suggest that custom path converters are simpler than regular expression converters.
+ 
+ Use named, rather than un-named, regular expression groups.
+ 
+ Often, two regex's that both resolve a ul to the same view, are different in that one can be reversed, and the other
+  cannot. 
+  
+ [A trick for specifying default views can be found here](
+ https://docs.djangoproject.com/en/2.2/topics/http/urls/#specifying-defaults-for-view-arguments)
+ 
+ ### Faster resolution
+ I got mired because the examples given to me in the Django tutorial didn't mention the use of a named view.  
+ I don't know how I could have gotten past that part faster. This deserves further contemplation.
+ 
+ 
+ Forms can use GET in addition to POST.
+ 
+ ### Forms are built in
+ We probably want to use Django's built in forms feature for pretty much every form.
+ I'm going to skip it now, and use it on the next form.
+ 
+ ## wsgi is the entrypoint for your wsgi server
+ Gunicorn and uwsgi are two popular wsgi servers that work with both Django and Flask.
+ 
+### Django is a web framework, not a web server 
+ 
+### Adding files does not trigger a Django restart.
+
+### Django apps and projects have a many-to-many relationship
+A useful microservice app might be identical and used in multiple Django projects.
+
+Apps are de-coupled from the Django project. The word "pluggable" references this decoupling.
+
+### Lots and lots of code is generated.
+Creating an app generates five files, plus a migrations directory. 
+
+### Always use "include()" to include other URL patterns. `admin.site.urls` is the only exception to this.
+
+### include() -> path()
+Path accepts 4 arguments: route, view, kwargs, name
+- Route - method and the domain name are not searched.
+- View - calls a function whose first positional argument is type HttpRequest. Arguments parsed out of the url are 
+passed as keyword arguments 
+- kwargs - arbitrary key word arguments can be passed in a dictionary to the target view. 
+- name - used for generating urls
+
+
+### Database defaults to SQLLite
+To change database, update the settings.py file, DATABASE.
+You'll need to add USER, PASSWORD, and HOST.
+'django.db.backends.postgresql' or 'django.db.backends.mysql'.
+
+There's a method for packaging and distributing Django apps.
+
+### Each app has database migrations.
+Running `django startproject mysite` automatically added 6 apps. The six apps each have their own migrations. It was 
+necessary to run `python manage.py migrate` in order to perform those migrations.
+
+### Design choices
+"Fields shouldn't assume certain behaviors based solely on the name of the field". This is in contrast to Ruby on Rails.
+
+Django appears to have a better migrations system then Ruby on Rails. Simpler, anyway. 
+
+
+#### [Field](https://docs.djangoproject.com/en/2.2/ref/models/fields/#django.db.models.Field) is an abstract class that represents a database table column
+Required arguments such as max_length are used for validation by Django.
+
+#### In settings, INSTALLED_APPS is a list of AppConfig classes.
+Migrations are done in two steps:
+- python manage.py makemigrations
+- python manage.py migrate 
