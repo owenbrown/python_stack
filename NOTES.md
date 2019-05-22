@@ -302,4 +302,45 @@ Required arguments such as max_length are used for validation by Django.
 #### In settings, INSTALLED_APPS is a list of AppConfig classes.
 Migrations are done in two steps:
 - python manage.py makemigrations
-- python manage.py migrate 
+- python manage.py migrate
+
+### Timezone support is built in
+Use `from django.utils import timezone; timestamp = timezone.now()` for timestamps.
+
+### ORM
+Each models.Model has an attribute 'objects' of type django.db.models.manager.Manager, with query methods.
+"get" expects only one response; it will error otherwise. 
+
+Something that makes Django's ORM different than most python functions is that attributes are created, and the 
+attributes named using the name of associated models. In the official Django tutorial, for example, "Question" has a 
+one-to-many relationship with "Choice". So, for Question instance q, q.choice_set.all() gives me all Choices whose 
+question_id (foreign key) equals the id of q.
+
+The double-underscore plays a similar role to a period.
+I looks like delete and create automatically save.
+
+ 
+A missing comma between function arguments can generate the "can't assign to function call" error message in PyCharm.
+ In a addition, it will underline in red correct items in a list, that may occur prior to the missing comma.
+ 
+### Django avoids coupling the model, template, and view
+However, the django.shortcuts module provides useful methods that couple different components. For example, 
+get_object_or_404() couples the model and the view. 
+
+### Django - queer templating
+I find it inconsistent that Django does not let you do simple Python inside the template, but appears to allow you to 
+use advanced ORM features. 
+
+One counter-intuitive feature is that it drops the parenthesis from functions. For example, question.choice_set.all, 
+is equivalent to calling question.choice_set.all() in python.
+
+### I don't know what this means
+>>>
+The template system uses dot-lookup syntax to access variable attributes. In the example of {{ question.question_text }}, first Django does a dictionary lookup on the object question. Failing that, it tries an attribute lookup – which works, in this case. If attribute lookup had failed, it would’ve tried a list-index lookup.
+>>>
+
+
+
+
+
+ 
