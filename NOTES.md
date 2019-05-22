@@ -339,8 +339,17 @@ is equivalent to calling question.choice_set.all() in python.
 The template system uses dot-lookup syntax to access variable attributes. In the example of {{ question.question_text }}, first Django does a dictionary lookup on the object question. Failing that, it tries an attribute lookup – which works, in this case. If attribute lookup had failed, it would’ve tried a list-index lookup.
 >>>
 
+### HTML
+Radio buttons all have the same name, but different ids and values. 
 
+request.POST['key'] values are always strings.
 
+HttpResponseRedirect appears unable to forward along values as parameters; it accepts only one argument.
+
+reverse() args are positional, and must be a tuple, even if they are a tuple of one.
+
+### [Use F() to avoid race conditions](https://docs.djangoproject.com/en/2.2/ref/models/expressions/#avoiding-race-conditions-using-f)
+Specifically, when incrementing something in the database.
 
 
  
