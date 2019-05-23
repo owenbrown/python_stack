@@ -365,4 +365,7 @@ There appears to be two common strategies for deploying static files
 In either case, Django allows you to collect all of the static files. It appears that you can get
 
 ### Static files can't use Django's path generator
-Use relative paths instead.   
+Use relative paths instead.
+
+### Model-Template-View
+Skinny controllers and fat models.    
