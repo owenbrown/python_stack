@@ -352,4 +352,17 @@ reverse() args are positional, and must be a tuple, even if they are a tuple of 
 Specifically, when incrementing something in the database.
 
 
- 
+Testing in Django uses Django's testing framework. 
+
+
+## [Checking test coverage is easy!](https://docs.djangoproject.com/en/2.2/topics/testing/advanced/#topics-testing-code-coverage)
+
+At some point I'll need to learn how to store static files in S3.
+There appears to be two common strategies for deploying static files
+- Have a dedicated static files server (nginx, perhaps)
+- Use a CDN like AWS Cloudfront, S3, Akamai, etc.
+
+In either case, Django allows you to collect all of the static files. It appears that you can get
+
+### Static files can't use Django's path generator
+Use relative paths instead.   
