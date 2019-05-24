@@ -5,6 +5,39 @@
     <title>Title</title>
 </head>
 <body>
+<h2>Add an author</h2>
+<form action="{% url 'add_author' %}" method="post">
+    {% csrf_token %}
+
+    <label for="first_name">First Name</label><br>
+    <input type="text" id="first_name" name="first_name"><br>
+
+    <label for="last_name">Last name</label><br>
+    <input type="text" id="last_name" name="last_name"><br>
+
+    <label for="notes">Notes</label><br>
+    <input type="text" id="notes" name="notes"><br>
+
+    <input type="submit" value="Submit">
+</form>
+
+{% if authors %}
+    <table style="width:100%">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.id }}</td>
+                <td>{{ author.first_name }} {{ author.last_name }}</td>
+                <td><a href="{% url 'author_detail' author.id %}">Detail</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
 
 </body>
 </html>

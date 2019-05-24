@@ -9,5 +9,13 @@
 <h3>ID: {{ book.id }}</h3>
 <h3>Description</h3>
 {{ book.desc }}
+
+<h4>Add authors through the authors page</h4>
+<ul>
+<h3>Authors</h3>
+    {% for author in authors %}
+        <li>{{ author.first_name }} {{ author.last_name }}</li>
+    {% endfor %}
+</ul>
 </body>
 </html>

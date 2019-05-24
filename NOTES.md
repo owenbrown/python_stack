@@ -369,3 +369,18 @@ Use relative paths instead.
 
 ### Model-Template-View
 Skinny controllers and fat models.    
+
+
+### URL errors
+I seem to be running into a lot of errors with URLs. 
+Let's recorded them.
+It's okay that I'm making mistakes but let's not make the same mistake twice. And, if I do make the same mistake 
+twice, let's at least be able to quickly identify and fix it. 
+Perhaps the process is first learning to quickly spot the error. Then, when I commit the sin, I'll be able to quickly
+ correct and adjust how I look at the world in that moment.
+ 
+## Common URL errors
+1. Forgetting to add the URL at all 
+2. Forgetting to wrap the_name here in a single quote:  {% url 'the_name' %}
+3. Leaving $ at the end of the include URL
+4. Forgetting $ in a regex url, causing the wrong url to match
