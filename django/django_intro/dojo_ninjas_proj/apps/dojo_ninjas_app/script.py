@@ -71,10 +71,3 @@ print(r)
 d4 = Dojo(name='CoderDojo Silicon Beach', city="Los Angeles", state="California", desc="Bits of sand everywhere")
 d4.save()
 # Submit your .txt file that contains all the queries you ran in the shell
-
-
-
-
-
-
-
