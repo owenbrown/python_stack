@@ -1,4 +1,6 @@
 from django import forms
+from django.core import validators
+from django.forms import CharField
 
 from .models import Show
 
@@ -15,3 +17,7 @@ class ShowForm(forms.ModelForm):
     class Meta:
         model = Show
         fields = ["title", "network", "description", "release_date"]
+
+
+class SlugField(CharField):
+    default_validators = [validators.validate_slug]

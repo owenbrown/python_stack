@@ -405,3 +405,18 @@ automatically bound to the previous data on the second rendering.
 ## Reading through the documents, one line at a time, is sometimes the best way
 For example, with https://docs.djangoproject.com/en/2.2/topics/forms/modelforms/, it would have taken more time to 
 guess-and-check different bits of code, than to just read through the whole ten-page doc. 
+
+## Manager lets you add arbitrary queries to an object.
+Why this was necessary, instead of just having the user write additional functions for the class, isn't clear.
+
+## What I'm doing, and should I keep doing it?
+I wanted to learn how to use forms.ModelForm. It's handy. Per the assignment, I need to add validation. The question 
+is, is there a preferred way to add validation? Specifically, I want to add a minimum length to the form. I don't 
+think I can do this at the model level. I could render each field of the form seperately (I just read how to do this)
+, but I'm wondering if Django offers more advanced client-side validation when using forms.ModelForm.
+
+
+I'm in a hurry. I'm going to skip the client side validation. In fact, I'm not even going to use a validator. 
+
+Instead, I'm going to re-read the instructions. If it's simpler to use a smidgeon of python to simply check the 
+length of the field, I'll use message.error, and return that. 

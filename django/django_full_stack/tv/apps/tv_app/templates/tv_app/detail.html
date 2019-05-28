@@ -11,6 +11,10 @@ ID: {{ show.id }}<br>
 Title: {{ show.title }}<br>
 Network: {{ show.network }}<br>
 Release date: {{ show.release_date }}<br>
+Last updated: {{ show.last_updated }}<br>
+<br>
+<a href="{% url 'update' show.id %}">Update</a><br>
+<a href="{% url 'destroy' show.id %}">Delete</a><br>
 
 </body>
 </html>
