@@ -49,7 +49,7 @@ def view_user(user_id):
     return render_template("view_user.html", user=user)
 
 
-@app.route("/users/<user_id>/edit")
+@app.route("/users/<user_id>/update")
 def edit_user(user_id):
     mysql = connectToMySQL('mydb')
     query = "SELECT first_name, last_name, email, user_id " \
@@ -65,7 +65,7 @@ def edit_user(user_id):
     return render_template("edit_user.html", user=user)
 
 
-@app.route("/users/<user_id>/edit", methods=["POST"])
+@app.route("/users/<user_id>/update", methods=["POST"])
 def edit_user_post(user_id):
     mysql = connectToMySQL('mydb')
     query = "UPDATE ninjauser " \

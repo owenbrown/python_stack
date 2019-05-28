@@ -17,8 +17,8 @@ def show(_, number):
     return HttpResponse(f"placeholder to display blog {number}")
 
 
-def edit(_, number):
-    return HttpResponse(f"placeholder to edit blog {number}")
+def update(_, number):
+    return HttpResponse(f"placeholder to update blog {number}")
 
 
 def delete(_, number):

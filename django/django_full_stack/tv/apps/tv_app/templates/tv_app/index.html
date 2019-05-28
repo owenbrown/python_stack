@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+Index goes here
+<table style="width:100%">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Network</th>
+        <th>Release date</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for show in show_list %}
+        <tr>
+            <td>{{ show.id }}</td>
+            <td>{{ show.title }}</td>
+            <td>{{ show.network }}</td>
+            <td>{{ show.release_date }}</td>
+            <td>
+                <a href="{% url 'detail' show.id %}">Detail</a>
+                <a href="{% url 'update' show.id %}">Update</a>
+                <a href="{% url 'destroy' show.id %}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

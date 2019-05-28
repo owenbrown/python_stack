@@ -384,3 +384,24 @@ Perhaps the process is first learning to quickly spot the error. Then, when I co
 2. Forgetting to wrap the_name here in a single quote:  {% url 'the_name' %}
 3. Leaving $ at the end of the include URL
 4. Forgetting $ in a regex url, causing the wrong url to match
+
+## Approach
+Start with the model.
+Then add tests.
+Use the new method, not one from the CoderDojo tutorial.
+
+
+## Forms and view classes - formatting
+IDs are passed in the view, and css in the template does the formatting. I think.
+
+I'm looking for an idiomatic, terse way to populate the form from the view.
+I could do it manually in python, as I've done in the past, but I think there might be something about forms that 
+makes this easier. I don't want to miss it.
+
+Form binding occurs automatically.
+For instance, if a route receives a post from a form, but for some reason re-renders that same form, the form is 
+automatically bound to the previous data on the second rendering.
+
+## Reading through the documents, one line at a time, is sometimes the best way
+For example, with https://docs.djangoproject.com/en/2.2/topics/forms/modelforms/, it would have taken more time to 
+guess-and-check different bits of code, than to just read through the whole ten-page doc. 

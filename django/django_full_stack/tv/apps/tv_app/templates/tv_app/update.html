@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New</title>
+</head>
+<body>
+<h1>Show: Update</h1>
+<h2>Comments</h2>
+I'm skipping the formatting here. I would probably use this <a href="https://simpleisbetterthancomplex
+.com/tutorial/2019/01/03/how-to-use-date-picker-with-django.html">implementation a date picker</a>
+<form action="{% url 'update' show.id%}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>
+</body>
+</html>
