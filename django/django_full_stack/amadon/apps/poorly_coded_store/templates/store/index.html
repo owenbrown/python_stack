@@ -1,0 +1,42 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+
+    <h1>Amadon Store!</h1>
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in all_products %}
+            <tr>
+                <form action="/checkout" method="post">
+                    {% csrf_token %}
+                    <td class="mdl-data-table__cell--non-numeric">{{ product.description }}</td>
+                    <td><input type="hidden" name="price" value="{{ product.price }}">{{ product.price }}</td>
+                    <td><select name="quantity">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select></td>
+
+
+                    <td>
+                        <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect
+                        mdl-button--accent"
+                        type="submit" value="Buy!">
+                    </td>
+                </form>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
+
