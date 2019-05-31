@@ -430,4 +430,5 @@ body class mdl-demo:
   
 <main class="mdl-layout__content">
 
-  
+## Common error messages
+"Reverse for '' not found" -> means that I forgot to put single quote around url name in the template.
