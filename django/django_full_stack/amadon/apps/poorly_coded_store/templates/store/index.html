@@ -1,42 +1,50 @@
 {% extends "store/base.html" %}
 
 {% block content %}
+    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
 
-    <h1>Amadon Store!</h1>
-    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-        <thead>
-        <tr>
-            <th class="mdl-data-table__cell--non-numeric">Item</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for product in all_products %}
-            <tr>
-                <form action="/checkout" method="post">
-                    {% csrf_token %}
-                    <td class="mdl-data-table__cell--non-numeric">{{ product.description }}</td>
-                    <td><input type="hidden" name="price" value="{{ product.price }}">{{ product.price }}</td>
-                    <td><select name="quantity">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select></td>
+        <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__supporting-text">
+                <h4>Shopping Cart</h4>
+                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in all_products %}
+                        <tr>
+                            <form action="/checkout" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ product.id }}">
+
+                                <td class="mdl-data-table__cell--non-numeric">{{ product.description }}</td>
+                                <td>{{ product.price }}</td>
+                                <td><select name="quantity">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select></td>
 
 
-                    <td>
-                        <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect
+                                <td>
+                                    <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect
                         mdl-button--accent"
-                        type="submit" value="Buy!">
-                    </td>
-                </form>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                                           type="submit" value="Buy!">
+                                </td>
+                            </form>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
+        </div>
+    </section>
 
 {% endblock %}
 

@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Amadon</title>
-</head>
-<body>
-    <h3>Thank you for your business!</h3>
-    <p>We charged your credit card for $</p>
-    <p>You have ordered # items so far and spent $$ with Amadon.com!</p>
-    <p><a href="/">Go Back</a></p>
-</body>
-</html>
+{% extends "store/base.html" %}
+{% load humanize %}
+{% block content %}
+    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+        <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__supporting-text">
+                <h4>Thank you for your business!</h4>
+                <p>We charged your credit card for ${{ total_charge|floatformat:"2"|intcomma }}</p>
+                <p>You have ordered {{ running_total_quantity|floatformat:"0"|intcomma }} items so far and spent
+                    ${{ running_total_charges|floatformat:"2"|intcomma }}
+                    with Amadon.com!</p>
+            </div>
+            <div class="mdl-card__actions">
+                <a href="/" class="mdl-button">Go Back</a>
+            </div>
+        </div>
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn3">
+            <i class="material-icons">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn3">
+            <li class="mdl-menu__item">Cancel order</li>
+            <li class="mdl-menu__item">Change quantity</li>
+        </ul>
+    </section>
+{% endblock %}
