@@ -1,5 +1,6 @@
 import bcrypt
 from django.contrib import messages
+from django.http import Http404
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
@@ -34,6 +35,7 @@ def login(request):
             return render(request, 'wall_app/login.html', context=context)
 
         messages.success(request, f"Welcome back {user.first_name}!")
+        request.session['user_id'] = user.id
         return redirect(to=reverse("index"))
 
     login_form = forms.Login()
@@ -64,14 +66,16 @@ def register(request):
                 last_name=form.cleaned_data['last_name'],
             )
             user.save()
-            request.session["email"] = form.cleaned_data['email']
-            return redirect('index')
+            request.session["user_id"] = user.id
+            print("register is doing a redirect")
+            return redirect(to=reverse('index'))
     else:
         return redirect(to=reverse('login'))
 
 
 def message(request):
     # REMINDER - messages is a reserved word in Django
+    print("message hit")
     if request.method == "GET":
         return HttpResponse("You can't render message. If you could it would require a pk.")
     if request.method == "POST":
@@ -85,26 +89,37 @@ def message(request):
         else:
             # TODO add message failure logic
             return HttpResponse("add message failure logic")
+        print("created a messaged, now redirecting to index")
         return redirect("index")
 
 
 def comment(request):
     # REMINDER - messages is a reserved word in Django
-    if request.method == "GET":
-        return HttpResponse("Error - get request called on comment")
-    if request.method == "POST":
+    if "user_id" not in request.session:
+        messages.error("Please sign in")
+        return redirect(reverse('login'))
+
+    if request.method != "POST":
+        return HttpResponse("Error - Invalid method called")
+    else:
+        # request.method must equal "POST"
+        print("hmm what got posted")
+        print(request.POST)
         form = forms.Message(request.POST)
         if form.is_valid():
-            m = Comment(
+
+            c = Comment(
                 user_id=request.session['user_id'],
-                message_id=form.cleaned_data["message_id"],
-                comment=form.cleaned_data["comment"]
+                message_id=form.cleaned_data["message"],
+                comment=request.POST["comment"]
             )
-            m.save()
+            c.save()
         else:
-            # TODO add failure logic
-            return HttpResponse("Add comment failure logic")
-        return redirect("index")
+            print(form.errors)
+            return HttpResponse("Comment failure. Printed form errors to terminal")
+        message_user_id = c.message.user.id
+        print("message_user_id", message_user_id)
+        return redirect(reverse("wall", args=[message_user_id]))
 
 
 def index(request):
@@ -114,33 +129,65 @@ def index(request):
     else:
         print("user logged in, redirecting")
         user_id = request.session['user_id']
-        return redirect(reverse('wall', user_id))
+        return redirect(reverse(wall, args=[user_id]))
 
 
 def wall(request, user_id):
     if 'user_id' not in request.session:
         # force users to register
         return redirect(reverse('login'))
-    print("user_id was not in session")
-
     # Users can post to their own wall, but not to others walls
     if request.session["user_id"] == user_id:
         new_message_form = forms.Message()
     else:
         new_message_form = None
 
-    # TODO double check that this is working
-    wall_messages = Message.objects.all().order_by('-created_at')
+    try:
+        wall_user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        raise Http404("The requested user does not exist")
+    wall_messages = wall_user.message_set.order_by('-created_at')
+
+    # for i, wall_message in enumerate(wall_messages):
+    #     print("Yowza!")
+    #     print(i)
+    #     print([c.comment for c in wall_message.comments.all()])
+
     for m in wall_messages:
-        form = forms.Comment()
-        m.form = form
+        m.comment_form = forms.Comment()
         # TODO Check if this works
         # I added an attribute to the Message object. I'm going to try to render this form in Django. It may or may not
         # work
 
-    context = dict(new_message_form=new_message_form, wall_messages=wall_messages)
+    context = dict(new_message_form=new_message_form, wall_messages=wall_messages,
+                   user_id=request.session["user_id"])
 
     return render(request, "wall_app/wall.html", context)
+
+
+def delete_message(request, message_id):
+    try:
+        m = Message.objects.get(id=message_id)
+    except Message.DoesNotExist:
+        return Http404("the message does not exist")
+
+    if request.session["user_id"] != m.user.id:
+        return HttpResponse("You don't own this message")
+    m.delete()
+    return redirect(reverse("index"))
+
+
+def delete_comment(request, comment_id):
+    try:
+        c = Comment.objects.get(id=comment_id)
+    except Message.DoesNotExist:
+        return Http404("the comment does not exist")
+
+    if request.session["user_id"] != c.user.id:
+        return HttpResponse("You don't own this message")
+    wall_user_id = c.message.user.id
+    c.delete()
+    return redirect(reverse("wall", args=[wall_user_id]))
 
 
 def logout(request):

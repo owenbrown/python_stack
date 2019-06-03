@@ -14,9 +14,21 @@ class Register(forms.Form):
 
 
 class Message(forms.Form):
-    message = forms.CharField(widget=forms.Textarea)
+    message = forms.CharField(
+        label="New Message",
+        widget=forms.Textarea(
+            attrs={
+                "class": "mdl-textfield__input",
+                "rows": 3,
+                "id": "new_message"
+            }))
 
 
 class Comment(forms.Form):
-    comment = forms.CharField(widget=forms.Textarea)
-
+    comment = forms.CharField(
+        label="Add comment:",
+        widget=forms.Textarea(attrs={
+        "class": "mdl-textfield__input",
+        "rows": 2
+    })
+    )

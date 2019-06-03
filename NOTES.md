@@ -432,3 +432,24 @@ body class mdl-demo:
 
 ## Common error messages
 "Reverse for '' not found" -> means that I forgot to put single quote around url name in the template.
+
+## Django errors suck
+The errors Django gives are totally useless.
+For example, if you use the wrong syntax for "get" with the ORM, it will give you the error, 'TypeError: int object 
+is not interable'.
+
+There is a lesson here though, that could have saved me 30 minutes.
+The lesson is this: 
+Scan the entire traceback, searching for the code that you wrote or understand.
+If I'd done that, I would have noticed that the error that just cost me 30 minutes stems from
+    wall_user = User.objects.get(user_id)
+
+Another lesson is to be careful with ORM syntax, and URL syntax. 
+URL syntax should be carefullly validated with print statements, prior to writing code.
+This is frusterating and might change my flow.   
+
+## Two hours lost to typo
+I lost two full hours to a typo in the template language.
+One thing I need to learn is, with Django, if data is missing in the rendered view, the check to see if that data is 
+accessible in the views.py file. If it is, the likely culprit is a type on the .html template. So, carefully inspect 
+the code in the template. 
